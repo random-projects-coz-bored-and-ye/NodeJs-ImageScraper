@@ -1,4 +1,3 @@
-// downloader.js - the real slay ✨
 const puppeteer = require('puppeteer');
 const axios = require('axios');
 const fs = require('fs');
@@ -64,7 +63,7 @@ async function scrapeImages() {
   }
 
   await browser.close();
-  console.log(' all done! check the "cat-loafs" folder!');
+  console.log(' all done! check the "photo" folder!');
 }
 
 scrapeImages();
