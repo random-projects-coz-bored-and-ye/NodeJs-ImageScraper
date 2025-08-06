@@ -32,7 +32,7 @@ wanna run this on your own machine? say less. just follow these steps.
 first, you gotta get the code. open your terminal and run this:
 
 ```bash
-https://github.com/random-projects-coz-bored-and-ye/NodeJs-ImageScraper.git
+git clone https://github.com/random-projects-coz-bored-and-ye/NodeJs-ImageScraper.git
 ```
 
 **2. get in the folder**
