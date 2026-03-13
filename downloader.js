@@ -14,7 +14,7 @@ if (!fs.existsSync(downloadPath)) {
 
 async function scrapeImages() {
   console.log('omg starting up the browser... 💻');
-  const browser = await puppeteer.launch({ headless: true }); // headless: true means it runs in the background
+  const browser = await puppeteer.launch({ headless: true });
   const page = await browser.newPage();
 
   console.log(`searching for "${searchTerm}" on google images...`);
@@ -29,19 +29,15 @@ async function scrapeImages() {
         return imageElements.map(img => img.src).filter(src => src.startsWith('http'));
     });
 
-    // add new, unique urls to our list
     urlsOnPage.forEach(url => {
         if (!imageUrls.includes(url)) {
             imageUrls.push(url);
         }
     });
 
-    // scroll to the bottom of the page
     await page.evaluate('window.scrollTo(0, document.body.scrollHeight)');
-    // wait a bit for new images to load in
     await new Promise(resolve => setTimeout(resolve, 1000));
     
-    // safety break in case we can't find more images
     if (imageUrls.length >= (await page.evaluate(() => document.querySelectorAll('.mNsIhb img').length))) {
         break;
     }
@@ -50,7 +46,6 @@ async function scrapeImages() {
   imageUrls = imageUrls.slice(0, downloadCount);
   console.log(`✨ found ${imageUrls.length} image URLs! now downloading...`);
 
-  // --- now we download each image! ---
   for (let i = 0; i < imageUrls.length; i++) {
     const url = imageUrls[i];
     try {
